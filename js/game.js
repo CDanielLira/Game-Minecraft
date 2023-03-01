@@ -3,3 +3,6 @@ $(window).load(function () {
     game.init();
 });
 
+function registro (){
+    location.href = "registro.html";
+}
