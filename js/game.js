@@ -1,7 +1,4 @@
-// Iniciar el juego tras cargar la pagina
-$(window).load(function () {
-    game.init();
-});
+// Trasladar la página a inicio
 
 function registro (){
     location.href = "registro.html";

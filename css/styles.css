@@ -21,7 +21,7 @@
 }
 
   
-  .btn-minecraft {
+  .btn-minecraft , input[type=text] {
     background: #727272;
     color: rgb(247, 247, 247);
     width: 100%;
@@ -39,6 +39,16 @@
 
   .btn-minecraft:hover {
     background: rgba(115, 107, 221, 1);
+  }
+
+  input[type=text]:hover{
+    background: rgba(115, 107, 221, 1);
+
+  }
+
+  input[type=text]:focus{
+    color: rgb(246, 246, 44);
+    outline: none;
   }
 
   .btn-minecraft:focus {
