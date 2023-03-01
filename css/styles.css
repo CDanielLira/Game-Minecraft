@@ -1,0 +1,180 @@
+@font-face {
+    font-family: SuperMarioBros;
+    src: url("../fonts/SuperMarioBros.ttf");
+}
+
+#gamecontainer {
+    width: 1250px;
+    height: 700px;
+    background: url(/img/minecraft-bg.jpg);
+    border: 1px solid black;
+    background-repeat: no-repeat;
+    background-size : cover;
+}
+
+.gamelayer {
+    width: 640px;
+    height: 480px;
+    position: absolute;
+    display: none;
+}
+
+#gamestartscreen {
+    padding-top: 250px;
+    text-align: center;
+}
+
+#gamestartscreen img {
+    margin: 10px;
+    cursor: pointer;
+}
+
+#levelselectscreen {
+    padding: 100px 50px;
+    width: 540px;
+    height: 280px;
+}
+
+#levelselectscreen input {
+    margin: 20px;
+    cursor: pointer;
+    background: url(../img/icons/level.png);
+    color: yellow;
+    font-size: 20px;
+    width: 64px;
+    height: 64px;
+    border: 0;
+}
+
+#loadingscreen {
+    background: rgba(100, 100, 100, 0.5);
+}
+
+#loadingmessage {
+    margin-top: 400px;
+    text-align: center;
+    height: 48px;
+    color: ghostwhite;
+    background: url(../img/loader.gif) no-repeat center;
+    font: 12px Arial;
+}
+
+#scorescreen {
+    height: 60px;
+    font: 32px "SuperMarioBros", sans-serif;
+    text-shadow: 0 0 2px #000000;
+    color: ghostwhite;
+}
+
+#scorescreen img {
+    opacity: 0.6;
+    top: 10px;
+    position: relative;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+#scorescreen #score {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+
+#endingscreen {
+    text-align: center;
+    /*Extras to make ending screen look nice*/
+    background: rgba(10, 10, 10, 0.75);
+    font: 32px "SuperMarioBros", sans-serif;
+    text-shadow: 0 0 2px #000000;
+    color: ghostwhite;
+    vertical-align: middle;
+}
+
+*[onclick] {
+    cursor: pointer;
+}
+
+#debugcanvas {
+    position: absolute;
+    display: block;
+    top: 500px;
+}
+
+#scorescreen img#scoreGif {
+    position: absolute;
+    top: 8px;
+    height: 30px;
+    right: 100px;
+    opacity: 1;
+}
+
+#settingsscreen {
+    text-align: center;
+    /*Extras to make ending screen look nice*/
+    background: rgba(10, 10, 10, 0.75);
+    font: 32px "SuperMarioBros", sans-serif;
+    text-shadow: 0 0 2px #000000;
+    color: ghostwhite;
+    vertical-align: middle;
+}
+
+#acceptsettings {
+    position: relative;
+    top: 300px;
+    height: 50px;
+}
+
+#volume span {
+    position: absolute;
+    top: 50px;
+    width: 300px;
+    left: 170px;
+}
+
+#volume i {
+    position: absolute;
+    top: 90px;
+}
+
+i:first-child {
+    left: 125px;
+}
+
+i:last-child {
+    right: 125px;
+}
+
+#volumeSlider {
+    position: absolute;
+    left: 170px;
+    top: 100px;
+    margin: 0 auto;
+    height: 10px;
+    width: 300px;
+    background: #555;
+    border-radius: 15px;
+}
+
+#volumeSlider .ui-slider-range-min {
+    height: 5px;
+    width: 295px;
+    position: absolute;
+    top: 2px;
+    background: #20cc00;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+}
+
+#volumeSlider .ui-slider-handle {
+    width: 20px;
+    height: 20px;
+    top: 2px;
+    border-radius: 20px;
+    background: #FFF;
+    position: absolute;
+    margin-left: -8px;
+    margin-top: -8px;
+    cursor: pointer;
+    outline: none;
+}
