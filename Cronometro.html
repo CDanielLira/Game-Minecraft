@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="cronometro">00:00:00</div>
+    <script>
+      var cronometroElemento = document.getElementById("cronometro");
+      var tiempoInicial = Date.now();
+
+      function actualizarCronometro() {
+        var tiempoTranscurrido = Date.now() - tiempoInicial;
+        var segundosTranscurridos = Math.floor(tiempoTranscurrido / 1000);
+        var minutosTranscurridos = Math.floor(segundosTranscurridos / 60);
+        var horasTranscurridas = Math.floor(minutosTranscurridos / 60);
+        var segundosMostrados = segundosTranscurridos % 60;
+        var minutosMostrados = minutosTranscurridos % 60;
+        var horasMostradas = horasTranscurridas % 24;
+        var tiempoMostrado = `${horasMostradas
+          .toString()
+          .padStart(2, "0")}:${minutosMostrados
+          .toString()
+          .padStart(2, "0")}:${segundosMostrados.toString().padStart(2, "0")}`;
+        cronometroElemento.textContent = tiempoMostrado;
+      }
+
+      actualizarCronometro();
+      setInterval(actualizarCronometro, 1000);
+    </script>
+  </body>
+</html>
