@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Juego de arrastrar y soltar</title>
+    <style>
+      /* Estilos para los contenedores de los animales */
+      #contenedor {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 50px;
+      }
+      .caja {
+        width: 150px;
+        height: 150px;
+        background-color: #ddd;
+        border: 1px solid #999;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      /* Estilos para los animales */
+      .animal {
+        width: 100px;
+        height: 100px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      #perro {
+        background-image: url("Cerdo.png");
+      }
+      #gato {
+        background-image: url("Gato.png");
+      }
+      #conejo {
+        background-image: url("Pollo.png");
+      }
+      #raton {
+        background-image: url("Oveja.png");
+      }
+      #pajaro {
+        background-image: url("Llama.png");
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Juego de arrastrar y soltar</h1>
+    <p>Arrastra los animales a su caja correspondiente.</p>
+    <div id="contenedor">
+      <div
+        id="caja1"
+        class="caja"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        id="caja2"
+        class="caja"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+      <div
+        id="caja3"
+        class="caja"
+        ondrop="drop(event)"
+        ondragover="allowDrop(event)"
+      ></div>
+    </div>
+
+    <script>
+      // Variables para guardar las cajas donde se colocan los animales
+      var cajaAnimales = {};
+
+      // Obtener el contenedor principal
+      var contenedor = document.getElementById("contenedor");
+
+      // Funciones para manejar los eventos de arrastrar y soltar
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        var animal = document.getElementById(data);
+        var caja = event.target;
+        if (caja.classList.contains("caja")) {
+          caja.appendChild(animal);
+          cajaAnimales[data] = caja;
+        } else {
+          contenedor.appendChild(animal);
+          delete cajaAnimales[data];
+        }
+      }
+
+      // Función para crear un animal aleatorio y agregarlo al contenedor
+      function crearAnimal() {
+        var animales = ["perro", "gato", "conejo", "raton", "pajaro"];
+        var animal = animales[Math.floor(Math.random() * animales.length)];
+        if (!cajaAnimales[animal]) {
+          var nuevoAnimal = document.createElement("div");
+          nuevoAnimal.id = animal;
+          nuevoAnimal.className = "animal";
+          nuevoAnimal.draggable = true;
+          nuevoAnimal.addEventListener("dragstart", drag);
+          contenedor.appendChild(nuevoAnimal);
+          cajaAnimales[animal] = null;
+        } else {
+          crearAnimal();
+        }
+      }
+
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        var animal = document.getElementById(data);
+        var caja = event.target;
+        if (caja.classList.contains("caja")) {
+          caja.appendChild(animal);
+          cajaAnimales[data] = caja;
+        } else {
+          contenedor.appendChild(animal);
+          delete cajaAnimales[data];
+        }
+      }
+
+      // Crear tres animales aleatorios al inicio del juego
+      for (var i = 0; i < 3; i++) {
+        crearAnimal();
+      }
+
+      // Función para comprobar si se han colocado todos los animales en las cajas correctas
+      function comprobarGanador() {
+        var perroCaja = cajaAnimales["perro"];
+        var gatoCaja = cajaAnimales["gato"];
+        var conejoCaja = cajaAnimales["conejo"];
+        var ratonCaja = cajaAnimales["raton"];
+        var pajaroCaja = cajaAnimales["pajaro"];
+        if (
+          perroCaja &&
+          perroCaja.id === "caja1" &&
+          gatoCaja &&
+          gatoCaja.id === "caja2" &&
+          conejoCaja &&
+          conejoCaja.id === "caja3" &&
+          !ratonCaja &&
+          !pajaroCaja
+        ) {
+          alert("¡Ganaste!");
+        }
+      }
+    </script>
+  </body>
+</html>
