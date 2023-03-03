@@ -27,20 +27,20 @@
         background-repeat: no-repeat;
         background-position: center;
       }
-      #perro {
+      #Cerdo {
         background-image: url("img/Cerdo.png");
       }
-      #gato {
+      #Gato {
         background-image: url("img/Gato.png");
       }
-      #conejo {
+      #Pollo {
         background-image: url("img/Pollo.png");
       }
-      #raton {
+      #Oveja{
         background-image: url("img/Oveja.png");
       }
-      #pajaro {
-        background-image: url("img/Oveja.png");
+      #Llama {
+        background-image: url("img/Llama.png");
       }
     </style>
   </head>
@@ -100,7 +100,7 @@
 
       // Función para crear un animal aleatorio y agregarlo al contenedor
       function crearAnimal() {
-        var animales = ["perro", "gato", "conejo", "raton", "pajaro"];
+        var animales = ["Cerdo", "Gato", "Pollo", "Oveja", "Llama"];
         var animal = animales[Math.floor(Math.random() * animales.length)];
         if (!cajaAnimales[animal]) {
           var nuevoAnimal = document.createElement("div");
@@ -138,26 +138,26 @@
       }
 
       // Crear tres animales aleatorios al inicio del juego
-      for (var i = 0; i < 3; i++) {
+      for (var i = 0; i < 4; i++) {
         crearAnimal();
       }
 
       // Función para comprobar si se han colocado todos los animales en las cajas correctas
       function comprobarGanador() {
-        var perroCaja = cajaAnimales["perro"];
-        var gatoCaja = cajaAnimales["gato"];
-        var conejoCaja = cajaAnimales["conejo"];
-        var ratonCaja = cajaAnimales["raton"];
-        var pajaroCaja = cajaAnimales["pajaro"];
+        var CerdoCaja = cajaAnimales["Cerdo"];
+        var GatoCaja = cajaAnimales["Gato"];
+        var PolloCaja = cajaAnimales["Pollo"];
+        var OvejaCaja = cajaAnimales["Oveja"];
+        var LlamaCaja = cajaAnimales["Llama"];
         if (
-          perroCaja &&
-          perroCaja.id === "caja1" &&
-          gatoCaja &&
-          gatoCaja.id === "caja2" &&
-          conejoCaja &&
-          conejoCaja.id === "caja3" &&
-          !ratonCaja &&
-          !pajaroCaja
+          CerdoCaja &&
+          CerdoCaja.id === "caja1" &&
+          GatoCaja &&
+          GatoCaja.id === "caja2" &&
+          PolloCaja &&
+          PolloCaja.id === "caja3" &&
+          !OvejaCaja &&
+          !LlamaCaja
         ) {
           alert("¡Ganaste!");
         }
