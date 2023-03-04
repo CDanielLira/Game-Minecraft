@@ -84,13 +84,13 @@
         for (j = 0; j < 3; j++) {
           var nuevoAnimal = document.createElement("div");
           var drag = document.createElement("div");
-          drag.addEventListener("dragenter", eventoEnter, false);
-          drag.addEventListener("dragover", eventoOver, false);
-          drag.addEventListener("drop", soltado, false);
+          drag.addEventListener("ondragover", allowDrop);
+          drag.addEventListener("ondrop", drop);
+          // drag.addEventListener("drop", soltado, false);
           drag.id = nom[lista2[j] - 1];
           drag.className = "caja";
-          drag.ondrop = "drop(event)";
-          drag.ondragover = "allowDrop(event)";
+          // drag.ondrop = "drop(event)";
+          // drag.ondragover = "allowDrop(event)";
           var image = document.createElement("img");
           image.src = "img/" + nom[lista2[j] - 1] + ".png";
           image.className = "animal";
