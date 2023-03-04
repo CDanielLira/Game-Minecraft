@@ -1,5 +1,8 @@
 body{
     background-image: url(img/FondoPaisaje.jpg);
+    background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center
   }
   /* Estilos para los contenedores de los animales */
   #contenedor1 {
