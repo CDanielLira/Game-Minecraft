@@ -60,3 +60,16 @@ input[type=text]:focus {
   color: rgb(246, 246, 44);
   outline: none;
 }
+
+audio::-webkit-media-controls-panel {
+  background: #727272;
+  width: 100px;
+  height: 50px;
+  padding: 0.5rem 0;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
+  font-size: 1rem;
+  letter-spacing: 0.025em;
+  border: 2px solid rgba(0, 0, 0, 1);
+  cursor: pointer;
+  width: 50%;
+}
