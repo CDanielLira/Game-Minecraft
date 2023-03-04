@@ -24,7 +24,7 @@
   .btn-minecraft , input[type=text] {
     background: #727272;
     color: rgb(247, 247, 247);
-    width: 100%;
+    /* width: 100%; */
     padding: .5rem 0;
     margin-bottom: .75rem;
     text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.8);
