@@ -1,12 +1,3 @@
-function myFunction() {
-    var aux = document.getElementById("miSonido");
-    if(aux.muted){
-        aux.muted = false;
-    }else{
-        aux.muted = true;
-    }
-}
-
 //Creamos jugador artificial para probar guardado de datos
 let jugador = {"alias":"Pedrito", "tiempo":150};
 
