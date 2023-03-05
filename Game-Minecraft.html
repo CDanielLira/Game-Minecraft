@@ -5,7 +5,6 @@
   <title>Juego de arrastrar y soltar</title>
   <!-- <script src="js/juego.js"></script> -->
   <link rel="stylesheet" href="css/juego.css" />
-  <script src="js/cronometro-darien.js"></script>
   <style>
     #caja {
       width: 150px;
@@ -157,6 +156,7 @@
 
     var cronometroElemento = document.getElementById("cronometro");
       var tiempoInicial = Date.now();
+
 
     function actualizarCronometro() {
       var tiempoTranscurrido = Date.now() - tiempoInicial;

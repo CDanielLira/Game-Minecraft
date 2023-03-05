@@ -1,0 +1,13 @@
+body {
+  background-image: url(/img/fondo-felicitaciones.gif);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h1, a{
+  color: #a39490;
+  font-size: 80px;
+  text-align: center;
+  margin-top: 100px;
+  text-shadow: 2px 2px #000;
+}

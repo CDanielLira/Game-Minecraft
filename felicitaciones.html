@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Felicidades</title>
+    <link rel="stylesheet" href="css/felicitaciones.css" />
+  </head>
+  <body>
+    <div style="text-align: end">
+      <button>
+        <img src="img/bloque-musical.png" alt="Mute" width="50px" onclick="myFunction()"/>
+      </button>
+    </div>
+    <audio id="miSonido1" class="sonido" src="audio/fuegos-artificiales.mp3" autoplay loop></audio>
+    <audio id="miSonido2" class="sonido" src="audio/cheers.mp3" autoplay loop></audio>
+    <h1 style="padding-top: -40px" class="texto-imagen">Felicidades</h1>
+    <h1 id="nombre"></h1>
+    <div style="text-align: end; size: 25px;">
+        <a href="#" style="text-decoration: none;">¿Quieres jugar de nuevo?</a>
+    </div>
+    <script src="js/felicitaciones.js"></script>
+
+    <script>
+      function myFunction() {
+        var aux = document.getElementById("miSonido1");
+        var aux2 = document.getElementById("miSonido2");
+        if (aux.muted) {
+          aux.muted = false;
+          aux2.muted = false;
+        } else {
+          aux.muted = true;
+          aux2.muted = true;
+        }
+      }
+    </script>
+  </body>
+</html>
