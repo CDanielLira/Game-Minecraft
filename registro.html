@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,14 +8,27 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>Registro</title>
 </head>
+
 <body>
     <div id="gamecontainer" style="background-image: url(img/minecraft-bg.jpg);">
         <a href="index.html"><button class="Reg-minecraft">Regresar</button> </a>
         <div class="gamelayer" id="gamestartscreen" style="display: block; width: 1250px; ">
-            <input type="text" id="nickname" />           
-            <br/>
-            <button class="btn-minecraft" onclick="juego()">Aceptar</button>
+            <label for="name-input">Nombre:</label>
+            <br>
+            <input id="name-input" type="text">
+            <button id="save-button">Guardar</button>
         </div>
     </div>
+    <script>
+        const nameInput = document.getElementById('name-input');
+        const saveButton = document.getElementById('save-button');
+
+        // Cuando se hace clic en el botón "Guardar"
+        saveButton.addEventListener('click', function () {
+            const name = nameInput.value;
+            localStorage.setItem('name', name);
+        });
+    </script>
 </body>
+
 </html>
