@@ -22,6 +22,7 @@
 </head>
 
 <body>
+  <div id="cronometro">00:00:00</div>
   <div id="nombres">
     <div id="botones">
       <!-- Aqui van los botones a agregar -->
@@ -152,6 +153,10 @@
     window.onload = nombresMin();
 
     // Función para comprobar si se han colocado todos los animales en las cajas correctas
+
+    var cronometroElemento = document.getElementById("cronometro");
+      var tiempoInicial = Date.now();
+
 
     function actualizarCronometro() {
       var tiempoTranscurrido = Date.now() - tiempoInicial;
