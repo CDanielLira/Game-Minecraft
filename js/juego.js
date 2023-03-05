@@ -108,7 +108,7 @@ function soltado(e) {
   var id = e.dataTransfer.getData("Text");
   var elemento = document.getElementById(id);
   var posx = e.pageX - soltar.offsetLeft;
-  var posy = e.pageY - soltar.offsetTop;
+  var posy = e.pageY - soltar.offsetTop;.
   lienzo.drawImage(elemento, posx, posy);
 }
 
