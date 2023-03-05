@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="css/juego.css">
   </head>
   <body>
-    
+    <div id="cronometro" style="position: fixed;top: 10px;right: 10px;">00:00:00</div>
     <div id="nombres"></div>
     <div id="contenedor1"></div>
     <div id="contenedor2"></div>
@@ -252,6 +252,24 @@
           alert("¡Ganaste!");
         }
       }
+      function actualizarCronometro() {
+      var tiempoTranscurrido = Date.now() - tiempoInicial;
+      var segundosTranscurridos = Math.floor(tiempoTranscurrido / 1000);
+      var minutosTranscurridos = Math.floor(segundosTranscurridos / 60);
+      var horasTranscurridas = Math.floor(minutosTranscurridos / 60);
+      var segundosMostrados = segundosTranscurridos % 60;
+      var minutosMostrados = minutosTranscurridos % 60;
+      var horasMostradas = horasTranscurridas % 24;
+      var tiempoMostrado = `${horasMostradas
+        .toString()
+        .padStart(2, "0")}:${minutosMostrados
+          .toString()
+          .padStart(2, "0")}:${segundosMostrados.toString().padStart(2, "0")}`;
+      cronometroElemento.textContent = tiempoMostrado;
+    }
+
+    actualizarCronometro();
+    setInterval(actualizarCronometro, 1000);
     </script>
   </body>
 </html>
