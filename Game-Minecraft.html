@@ -52,24 +52,30 @@
 
   <div id="contenedor1">
     <div id="an0">
-      <div id="caja 0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <img id="animal0" src="" alt="">
     </div>
     <div id="an1">
-      <div id="caja 1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <img id="animal1" src="" alt="">
     </div>
     <div id="an2">
-      <div id="caja 2" ondrop="drop(eevent)" ondragover="allowDrop(event)"></div>
+      <div id="caja2" ondrop="drop(eevent)" ondragover="allowDrop(event)"></div>
+      <img id="animal2" src="" alt="">
     </div>
   </div>
   <div id="contenedor2">
     <div id="an3">
-      <div id="caja 3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <img id="animal3" src="" alt="">
     </div>
     <div id="an4">
-      <div id="caja 4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <img id="animal4" src="" alt="">
     </div>
     <div id="an5">
-      <div id="caja 5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <img id="animal5" src="" alt="">
     </div>
   </div>
   <script>
@@ -121,21 +127,19 @@
       }
       for (j = 0; j < 3; j++) {
         nuevoAnimal = document.getElementById("an" + j);
-        var divan = document.getElementById("caja " + j);
+        var divan = document.getElementById("caja" + j);
         divan.className = nom[lista2[j] - 1];
-        var image = document.createElement("img");
+        var image = document.getElementById("animal"+ j);
         image.src = "img/" + nom[lista2[j] - 1] + ".png";
         image.className = "animal";
-        divan.appendChild(image);
       }
       for (j = 3; j < 6; j++) {
         nuevoAnimal = document.getElementById("an" + j);
-        var divan = document.getElementById("caja " + j);
+        var divan = document.getElementById("caja" + j);
         divan.className = nom[lista2[j] - 1];
-        var image = document.createElement("img");
+        var image = document.getElementById("animal" + j);
         image.src = "../img/" + nom[lista2[j] - 1] + ".png";
         image.className = "animal";
-        nuevoAnimal.appendChild(image);
       }
     }
 
