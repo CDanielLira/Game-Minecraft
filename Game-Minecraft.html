@@ -3,8 +3,22 @@
 
 <head>
   <title>Juego de arrastrar y soltar</title>
-  <script src="js/juego.js"></script>
+  <!-- <script src="js/juego.js"></script> -->
   <link rel="stylesheet" href="css/juego.css" />
+  <style>
+    #caja {
+      width: 150px;
+      height: 50px;
+      background-color: #ddd;
+      border: 1px solid #999;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+  </style>
 </head>
 
 <body>
@@ -13,36 +27,49 @@
       <!-- Aqui van los botones a agregar -->
     </div>
     <div id="btn">
-      <div id="nombreAnimal 0" draggable="true" ondragstart="OnDragStart(event)"></div>
-      <div id="nombreAnimal 1" draggable="true" ondragstart="OnDragStart(event)"></div>
-      <div id="nombreAnimal 2" draggable="true" ondragstart="OnDragStart(event)"></div>
-      <div id="nombreAnimal 3" draggable="true" ondragstart="OnDragStart(event)"></div>
-      <div id="nombreAnimal 4" draggable="true" ondragstart="OnDragStart(event)"></div>
-      <div id="nombreAnimal 5" draggable="true" ondragstart="OnDragStart(event)"></div>
+      <div class="nombreAnimal" draggable="true" ondragstart="drag(event)" id="Cerdo">
+        cerdo
+        <!-- <img src="img/btnCerdo.jpg" class="nombreAnimal"  draggable="true" ondragstart="drag(event)" id="Cerdo" /> -->
+      </div>
+      <div id="nombreAnimal">
+        <img src="img/btnGato.jpg" class="nombreAnimal" id="Gato" alt="" draggable="true" ondragstart="drag(event)"
+          ondragend="end(event)" />
+      </div>
+      <div id="nombreAnimal">
+        <img src="img/btnLlama.jpg" class="nombreAnimal" id="Llama" alt="" draggable="true" ondragstart="drag(event)" />
+      </div>
+      <div id="nombreAnimal">
+        <img src="img/btnPollo.jpg" class="nombreAnimal" id="Pollo" alt="" draggable="true" ondragstart="drag(event)" />
+      </div>
+      <div id="nombreAnimal">
+        <img src="img/btnPerro.jpg" class="nombreAnimal" id="Perro" alt="" draggable="true" ondragstart="drag(event)" />
+      </div>
+      <div id="nombreAnimal">
+        <img src="img/btnOveja.jpg" class="nombreAnimal" id="Oveja" alt="" draggable="true" ondragstart="drag(event)" />
+      </div>
     </div>
-
   </div>
 
   <div id="contenedor1">
     <div id="an0">
-      <div id="caja1" class="caja" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja 0" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
     <div id="an1">
-      <div id="caja1" class="caja" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja 1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
     <div id="an2">
-      <div id="caja1" class="caja" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja 2" ondrop="drop(eevent)" ondragover="allowDrop(event)"></div>
     </div>
   </div>
   <div id="contenedor2">
     <div id="an3">
-      <div id="caja1" class="caja" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja 3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
     <div id="an4">
-      <div id="caja1" class="caja" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja 4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
     <div id="an5">
-      <div id="caja1" class="caja" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div id="caja 5" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
     </div>
   </div>
   <script>
@@ -54,8 +81,17 @@
     var contenedor2 = document.getElementById("contenedor2");
 
     // Funciones para manejar los eventos de arrastrar y soltar
+
     function allowDrop(event) {
       event.preventDefault();
+    }
+    function drag(event) {
+      event.dataTransfer.setData("text", event.target.id);
+    }
+    function drop(event) {
+      event.preventDefault();
+      var data = event.dataTransfer.getData("text");
+      event.target.appendChild(document.getElementById(data));
     }
 
     function nombresMin() {
@@ -64,25 +100,6 @@
       let lista = [];
       let lista2 = [];
       let repetido;
-      for (let i = 0; i < 6; i++) {
-        while (!lista[i]) {
-          repetido = true;
-          while (repetido == true) {
-            let random = Math.random();
-            random = random * 6 + 1;
-            random = Math.trunc(random);
-            for (let j = 0; j < lista.length; j++) {
-              if (lista[j] == random) {
-                repetido = true;
-                break;
-              } else {
-                repetido = false;
-              }
-            }
-            lista[i] = random;
-          }
-        }
-      }
       for (let i = 0; i < 6; i++) {
         while (!lista2[i]) {
           repetido = true;
@@ -102,183 +119,30 @@
           }
         }
       }
-      console.log(lista);
-      for (i = 0; i < 6; i++) {
-        var nombre = document.getElementById("nombreAnimal " + i);
-        nombre.className = nom[lista[i] - 1];
-        var imgtex = document.createElement("img");
-        imgtex.className = "NameAnimal";
-        imgtex.src = "img/btn" + nom[lista[i] - 1] + ".jpg";
-        nombre.appendChild(imgtex);
-      }
       for (j = 0; j < 3; j++) {
         nuevoAnimal = document.getElementById("an" + j);
-        nuevoAnimal.className = nom[lista2[j] - 1];
+        var divan = document.getElementById("caja " + j);
+        divan.className = nom[lista2[j] - 1];
         var image = document.createElement("img");
         image.src = "img/" + nom[lista2[j] - 1] + ".png";
         image.className = "animal";
-        nuevoAnimal.appendChild(image);
+        divan.appendChild(image);
       }
       for (j = 3; j < 6; j++) {
         nuevoAnimal = document.getElementById("an" + j);
-        nuevoAnimal.className = nom[lista2[j] - 1];
+        var divan = document.getElementById("caja " + j);
+        divan.className = nom[lista2[j] - 1];
         var image = document.createElement("img");
         image.src = "../img/" + nom[lista2[j] - 1] + ".png";
         image.className = "animal";
         nuevoAnimal.appendChild(image);
       }
     }
-    function onDragOver(event) {
-      event.preventDefault();
-    }
-    function onDragStart(event) {
-      event.dataTransfer.setData("text/plain", event.target.className);
-
-      // event.currentTarget.style.backgroundColor = "yellow";
-    }
-    function onDrop(event) {
-      const id = event.dataTransfer.getData("text");
-      const draggableElement = document.getElementById(id);
-      const dropzone = event.target;
-      dropzone.appendChild(draggableElement);
-      event.dataTransfer.clearData();
-    }
-    function soltado(e) {
-      e.preventDefault();
-      var id = e.dataTransfer.getData("Text");
-      var elemento = document.getElementById(id);
-      var posx = e.pageX - soltar.offsetLeft;
-      var posy = e.pageY - soltar.offsetTop;
-      lienzo.drawImage(elemento, posx, posy);
-    }
-
-    function eventoEnter(e) {
-      console.log("soy el evento dragenter");
-      e.preventDefault();
-    }
-
-    function eventoOver(e) {
-      console.log("soy el evento dragover");
-      e.preventDefault();
-    }
 
     window.onload = nombresMin();
 
-    function drag(event) {
-      event.dataTransfer.setData("text", event.target.id);
-    }
-
-    function drop(event) {
-      event.preventDefault();
-      var data = event.dataTransfer.getData("text");
-      var animal = document.getElementById(data);
-      var caja = event.target;
-      if (caja.classList.contains("caja")) {
-        caja.appendChild(animal);
-        cajaAnimales[data] = caja;
-      } else {
-        contenedor.appendChild(animal);
-        delete cajaAnimales[data];
-      }
-    }
-
-    // Función para crear un animal aleatorio y agregarlo al contenedor
-    // function crearAnimal() {
-    //   var animales = ["Gato", "Cerdo", "Llama", "Oveja", "Pollo", "Perro"];
-    //   let lista2 = [];
-    //   let repetido;
-    //   for (let i = 0; i < 6; i++) {
-    //     while (!lista[i]) {
-    //       repetido = true;
-    //       while (repetido == true) {
-    //         let random = Math.random();
-    //         random = random * 6 + 1;
-    //         random = Math.trunc(random);
-    //         for (let j = 0; j < lista.length; j++) {
-    //           if (lista[j] == random) {
-    //             repetido = true;
-    //             break;
-    //           } else {
-    //             repetido = false;
-    //           }
-    //         }
-    //         lista[i] = random;
-    //       }
-    //     }
-    //   }
-    //   console.log(lista);
-    //   for(i = 0; i <3; i++){
-    //     var nuevoAnimal = document.createElement("div");
-    //     nuevoAnimal.id = "animal"+i+1;
-    //     var drag = document.createElement("div");
-    //     drag.id = animales[lista2[i]-1];
-    //     drag.className = "caja";
-    //     drag.ondrop = "drop(event)";
-    //     drag.ondragover="allowDrop(event)";
-    //     var image = document.createElement("img");
-    //     image.src = animales[lista[i]-1] + ".png";
-    //     nuevoAnimal.appendChild(drag);
-    //     nuevoAnimal.appendChild(image);
-    //     contenedor1.appendChild(nuevoAnimal);
-    //   }
-
-    // var animal = animales[Math.floor(Math.random() * animales.length)];
-    // while (cajaAnimales[animal]) {
-    //   animal = animales[Math.floor(Math.random() * animales.length)];
-    // }
-    // var nuevoAnimal = document.createElement("div");
-    // nuevoAnimal.id = animal;
-    // nuevoAnimal.className = "animal";
-    // nuevoAnimal.draggable = true;
-    // nuevoAnimal.addEventListener("dragstart", drag );
-    // contenedor.appendChild(nuevoAnimal);
-    // cajaAnimales[animal] = null;
-    // }
-
-    function allowDrop(event) {
-      event.preventDefault();
-    }
-
-    function drag(event) {
-      event.dataTransfer.setData("text/plane", event.target.id);
-    }
-
-    function drop(event) {
-      event.preventDefault();
-      var data = event.dataTransfer.getData("text");
-      var animal = document.getElementById(data);
-      var caja = event.target;
-      if (caja.classList.contains("caja")) {
-        caja.appendChild(animal);
-        cajaAnimales[data] = caja;
-      } else {
-        contenedor.appendChild(animal);
-        delete cajaAnimales[data];
-      }
-    }
-
-    // Crear tres animales aleatorios al inicio del juego
-
     // Función para comprobar si se han colocado todos los animales en las cajas correctas
-    function comprobarGanador() {
-      var CerdoCaja = cajaAnimales["Cerdo"];
-      var GatoCaja = cajaAnimales["Gato"];
-      var PolloCaja = cajaAnimales["Pollo"];
-      var OvejaCaja = cajaAnimales["Oveja"];
-      var LlamaCaja = cajaAnimales["Llama"];
-      if (
-        CerdoCaja &&
-        CerdoCaja.id === "caja1" &&
-        GatoCaja &&
-        GatoCaja.id === "caja2" &&
-        PolloCaja &&
-        PolloCaja.id === "caja3" &&
-        !OvejaCaja &&
-        !LlamaCaja
-      ) {
-        alert("¡Ganaste!");
-      }
-    }
+
     function actualizarCronometro() {
       var tiempoTranscurrido = Date.now() - tiempoInicial;
       var segundosTranscurridos = Math.floor(tiempoTranscurrido / 1000);
