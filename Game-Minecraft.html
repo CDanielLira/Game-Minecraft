@@ -27,13 +27,12 @@
       <!-- Aqui van los botones a agregar -->
     </div>
     <div id="btn">
-      <div class="nombreAnimal" draggable="true" ondragstart="drag(event)" id="Cerdo">
-        cerdo
-        <!-- <img src="img/btnCerdo.jpg" class="nombreAnimal"  draggable="true" ondragstart="drag(event)" id="Cerdo" /> -->
+      <div id="nombreAnimal">
+        <img src="img/btnCerdo.jpg" class="nombreAnimal"  draggable="true" ondragstart="drag(event)" id="Cerdo" />
       </div>
       <div id="nombreAnimal">
         <img src="img/btnGato.jpg" class="nombreAnimal" id="Gato" alt="" draggable="true" ondragstart="drag(event)"
-          ondragend="end(event)" />
+        />
       </div>
       <div id="nombreAnimal">
         <img src="img/btnLlama.jpg" class="nombreAnimal" id="Llama" alt="" draggable="true" ondragstart="drag(event)" />
@@ -60,7 +59,7 @@
       <img id="animal1" src="" alt="">
     </div>
     <div id="an2">
-      <div id="caja2" ondrop="drop(eevent)" ondragover="allowDrop(event)"></div>
+      <div id="caja2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
       <img id="animal2" src="" alt="">
     </div>
   </div>
@@ -81,6 +80,7 @@
   <script>
     // Variables para guardar las cajas donde se colocan los animales
     var cajaAnimales = {};
+    var puntaje = 0;
 
     // Obtener el contenedor principal
     var contenedor1 = document.getElementById("contenedor1");
@@ -97,7 +97,13 @@
     function drop(event) {
       event.preventDefault();
       var data = event.dataTransfer.getData("text");
-      event.target.appendChild(document.getElementById(data));
+      console.log("Drop " + data);
+      console.log("Dropeable " + event.target.className);
+      if(event.target.className == data){
+        puntaje = puntaje +10;
+        event.target.appendChild(document.getElementById(data));
+      }
+      
     }
 
     function nombresMin() {
