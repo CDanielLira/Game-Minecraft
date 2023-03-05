@@ -24,9 +24,11 @@
         const saveButton = document.getElementById('save-button');
 
         // Cuando se hace clic en el botón "Guardar"
+        // Se guarda en local un Array llamado jugador con los datos del nickname, mientras el puntaje y tiempo en 0
         saveButton.addEventListener('click', function () {
-            const nombre = nameInput.value;
-            localStorage.setItem('nombre', nombre);
+            const nombreInput = nameInput.value;
+            let jugador = {"nickname":nombreInput, "puntaje":0, "tiempo":0}
+            localStorage.setItem("player", JSON.stringify(jugador));
         });
     </script>
 </body>
