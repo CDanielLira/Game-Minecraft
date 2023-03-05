@@ -9,14 +9,18 @@
     <title>Registro</title>
 </head>
 
-<body>
+<body <body onclick="PlayAudio()" style="background-image: url(img/minecraft-bg.jpg);">
     <div id="gamecontainer" style="background-image: url(img/minecraft-bg.jpg);">
-        <a href="index.html"><button class="Reg-minecraft">Regresar</button> </a>
+        
         <div class="gamelayer" id="gamestartscreen" style="display: block; width: 1250px; ">
-            <label for="name-input">Nombre:</label>
+            <label for="name-input">Ingresa tu nombre:</label>
+            <br>
             <br>
             <input id="name-input" type="text">
+            <br>
             <button id="save-button">Guardar</button>
+            <br>
+            <a href="/index.html"><button class="btn-minecraft">Regresar</button> </a>
         </div>
     </div>
     <script>
@@ -25,8 +29,8 @@
 
         // Cuando se hace clic en el botón "Guardar"
         saveButton.addEventListener('click', function () {
-            const nombre = nameInput.value;
-            localStorage.setItem('nombre', nombre);
+            const name = nameInput.value;
+            localStorage.setItem('name', name);
         });
     </script>
 </body>
