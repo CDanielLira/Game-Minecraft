@@ -1,17 +1,18 @@
 //Creamos jugador artificial para probar guardado de datos
-let jugador = {"alias":"Pedrito", "tiempo":150};
+let jugador = JSON.parse(localStorage.getItem("player"));
+let nombrePlayer = jugador.nickname;
 
 //Ponemos su alias en la pagina
 let nombre = document.getElementById("nombre");
-nombre.innerHTML = "Has ganado " + jugador.alias;
+nombre.innerHTML = "Has ganado " + nombrePlayer;
 
 //Empezamos comprobando si existe un dato con el mismo nombre
-if(localStorage.getItem(jugador.alias) != undefined){
-    let jugadorAux = JSON.parse(localStorage.getItem(jugador.alias));
+if(localStorage.getItem(nombrePlayer) != undefined){
+    let jugadorAux = JSON.parse(localStorage.getItem(nombrePlayer));
     if(jugador.tiempo < jugadorAux.tiempo){
-        localStorage.removeItem(jugador.alias);
-        localStorage.setItem(jugador.alias, JSON.stringify(jugador));
+        localStorage.setItem(nombrePlayer, JSON.stringify(jugador));
     }
 }else{
-    localStorage.setItem(jugador.alias, JSON.stringify(jugador));
+    localStorage.setItem(nombrePlayer, JSON.stringify(jugador));
 }
+localStorage.removeItem("player");
