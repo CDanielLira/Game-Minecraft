@@ -1,96 +1,111 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Tabla de Puntajes</title>
-  </head>
-  <body>
-    <h1>Tabla de Puntajes</h1>
-    
-    <form id="formulario-puntajes">
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" name="nombre" required>
-      <label for="puntaje">Puntaje:</label>
-      <input type="number" id="puntaje" name="puntaje" required>
-      <label for="tiempo">Tiempo:</label>
-      <input type="text" id="tiempo" name="tiempo" required>
-      <button type="submit">Agregar</button>
-    </form>
-    
-    <table>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Puntaje</th>
-          <th>Tiempo</th>
-        </tr>
-      </thead>
-      <tbody id="tabla-puntajes">
-      </tbody>
-    </table>
-    
-    <script>
-      // Obtener los datos de localStorage
-      const datos = JSON.parse(localStorage.getItem('puntajes')) || [];
-      
-      // Referencias a los elementos del formulario
-      const formularioPuntajes = document.getElementById('formulario-puntajes');
-      const nombreInput = document.getElementById('nombre');
-      const puntajeInput = document.getElementById('puntaje');
-      const tiempoInput = document.getElementById('tiempo');
-      
-      // Manejador de evento para el formulario
-      formularioPuntajes.addEventListener('submit', (event) => {
-        event.preventDefault(); // Evitar que se envíe el formulario
-        
-        // Obtener los valores del formulario
-        const nombre = nombreInput.value.trim();
-        const puntaje = parseInt(puntajeInput.value.trim());
-        const tiempo = tiempoInput.value.trim();
-        
-        // Validar los valores
-        if (!nombre || !puntaje || !tiempo) {
-          alert('Todos los campos son requeridos');
-          return;
-        }
-        
-        // Agregar los nuevos puntajes a la tabla y a localStorage
-        const nuevoPuntaje = { nombre, puntaje, tiempo };
-        datos.push(nuevoPuntaje);
-        localStorage.setItem('puntajes', JSON.stringify(datos));
-        renderizarTabla();
-        
-        // Reiniciar los valores del formulario
-        nombreInput.value = '';
-        puntajeInput.value = '';
-        tiempoInput.value = '';
-      });
-      
-      // Función para renderizar la tabla con los datos de localStorage
-      function renderizarTabla() {
-        // Ordenar los datos por puntaje en orden descendente
-        const datosOrdenados = datos.sort((a, b) => b.puntaje - a.puntaje);
-        const tablaPuntajes = document.getElementById('tabla-puntajes');
-        tablaPuntajes.innerHTML = ''; // Limpiar la tabla antes de renderizarla de nuevo
-        datos.forEach(({ nombre, puntaje, tiempo }) => {
-          const row = document.createElement('tr');
-          const nombreCell = document.createElement('td');
-          const puntajeCell = document.createElement('td');
-          const tiempoCell = document.createElement('td');
-          
-          nombreCell.textContent = nombre;
-          puntajeCell.textContent = puntaje;
-          tiempoCell.textContent = tiempo;
-          
-          row.appendChild(nombreCell);
-          row.appendChild(puntajeCell);
-          row.appendChild(tiempoCell);
-          
-          tablaPuntajes.appendChild(row);
-        });
+
+<head>
+  <title>Tabla de Puntajes</title>
+  <style>
+    table {
+      margin: 0 auto;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    td,
+    th {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #00781a;
+      /* color de fondo del encabezado */
+      color: #fff;
+      /* color de texto del encabezado */
+    }
+  </style>
+</head>
+
+<body style="background-image: url(img/FondoPuntaje.jpg);">
+  <h1>Tabla de Puntajes</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Puntaje</th>
+        <th>Tiempo</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-puntajes">
+    </tbody>
+  </table>
+
+  <script>
+    // Obtener los datos de localStorage
+    const datos = JSON.parse(localStorage.getItem('puntajes')) || [];
+
+    // Referencias a los elementos del formulario
+    const formularioPuntajes = document.getElementById('formulario-puntajes');
+    const nombreInput = document.getElementById('nombre');
+    const puntajeInput = document.getElementById('puntaje');
+    const tiempoInput = document.getElementById('tiempo');
+
+    // Manejador de evento para el formulario
+    formularioPuntajes.addEventListener('submit', (event) => {
+      event.preventDefault(); // Evitar que se envíe el formulario
+
+      // Obtener los valores del formulario
+      const nombre = nombreInput.value.trim();
+      const puntaje = parseInt(puntajeInput.value.trim());
+      const tiempo = tiempoInput.value.trim();
+
+      // Validar los valores
+      if (!nombre || !puntaje || !tiempo) {
+        alert('Todos los campos son requeridos');
+        return;
       }
-      
-      // Renderizar la tabla por primera vez
+
+      // Agregar los nuevos puntajes a la tabla y a localStorage
+      const nuevoPuntaje = { nombre, puntaje, tiempo };
+      datos.push(nuevoPuntaje);
+      localStorage.setItem('puntajes', JSON.stringify(datos));
       renderizarTabla();
-    </script>
-  </body>
+
+      // Reiniciar los valores del formulario
+      nombreInput.value = '';
+      puntajeInput.value = '';
+      tiempoInput.value = '';
+    });
+
+    // Función para renderizar la tabla con los datos de localStorage
+    function renderizarTabla() {
+      // Ordenar los datos por puntaje en orden descendente
+      const datosOrdenados = datos.sort((a, b) => b.puntaje - a.puntaje);
+      const tablaPuntajes = document.getElementById('tabla-puntajes');
+      tablaPuntajes.innerHTML = ''; // Limpiar la tabla antes de renderizarla de nuevo
+      datos.forEach(({ nombre, puntaje, tiempo }) => {
+        const row = document.createElement('tr');
+        const nombreCell = document.createElement('td');
+        const puntajeCell = document.createElement('td');
+        const tiempoCell = document.createElement('td');
+
+        nombreCell.textContent = nombre;
+        puntajeCell.textContent = puntaje;
+        tiempoCell.textContent = tiempo;
+
+        row.appendChild(nombreCell);
+        row.appendChild(puntajeCell);
+        row.appendChild(tiempoCell);
+
+        tablaPuntajes.appendChild(row);
+      });
+    }
+
+    // Renderizar la tabla por primera vez
+    renderizarTabla();
+  </script>
+</body>
+
 </html>
